@@ -1,1 +1,1 @@
-web:gunicorn ticaretSitem.wsgi --log-file -
+web: gunicorn ticaretSitem.wsgi --log-file -
