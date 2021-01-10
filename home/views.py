@@ -15,11 +15,11 @@ from django.contrib.auth.forms import PasswordChangeForm, UserChangeForm
 
 # /home
 def index(request):
-    setting = Setting.objects.get(pk=1)
+    
     reklamData = Product.objects.all()
     categoryData = Category.objects.all()
     context = {
-        'setting': setting,
+        
         'categoryData': categoryData,
         'page': 'home',
         'reklamData': reklamData
@@ -29,9 +29,9 @@ def index(request):
 
 
 def aboutUs(request):
-    setting = Setting.objects.get(pk=1)
+    
     context = {
-        'setting': setting,
+        
         'page': 'about'
     }
 
@@ -88,7 +88,7 @@ def contactUs(request):
             messages.success(request, "İletişim formunuz başarıyla gönderilmiştir.")
             return HttpResponseRedirect('/contact')
 
-    setting = Setting.objects.get(pk=1)
+    
     form = ContactForm()
     context = {
         'form': form
