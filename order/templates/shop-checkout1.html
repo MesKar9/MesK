@@ -1,0 +1,217 @@
+{% load static %}
+
+<! DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Anasayfa</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Google fonts - Roboto-->
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Roboto:300,400,700' %}">
+    <!-- Bootstrap Select-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/css/bootstrap-select.min.css' %}">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Favicon and apple touch icons-->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-touch-icon-76x76.png"' %}>
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/apple-touch-icon-152x152.png' %}">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9] -->
+        <script src="{% static 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js' %}"></script>
+        <script src="{% static 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><!--[endif]-->
+  </head>
+    <body>
+
+
+    {% include 'navbar.html' %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">ADRES BİLGİLERİ VE ÖDEME BİLGİLERİ</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="index.html">ANASAYFA</a></li>
+                <li class="breadcrumb-item active">ÖDEME</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="checkout" class="col-lg-9">
+              <div class="box border-bottom-0">
+              {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                <form action="" method="post">
+                  {% csrf_token %}
+                  <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item"><a href="/order/productorder" class="nav-link active"> <i class="fa fa-map-marker"></i><br>Adres Bilgileri</a></li>
+                    {% comment %} <li class="nav-item"><a href="#" class="nav-link disabled"><i class="fa fa-truck"></i><br>Delivery Method</a></li> {% endcomment %}
+                    {% comment %} <li class="nav-item"><a href="/order/payment" class="nav-link disabled"><i class="fa fa-money"></i><br>Ödeme</a></li> {% endcomment %}
+                    {% comment %} <li class="nav-item"><a href="#" class="nav-link disabled"><i class="fa fa-eye"></i><br>Order Review</a></li> {% endcomment %}
+                  </ul>
+                  <div class="content">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="first_name">İsim</label>
+                          <input id="first_name" type="text" value="{{user.first_name}}" class="form-control" name="first_name">
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="last_name">Soyisim</label>
+                          <input id="last_name" type="text" value="{{user.last_name}}" class="form-control" name="last_name">
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="city">Şehir</label>
+                          <input id="city" type="text" value="{{profile.city}}" class="form-control" name="city">
+                        </div>
+                        </div>
+                      
+                      
+                      
+                      
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="phone">Telefon Numarası</label>
+                          <input id="phone" type="text" value="{{profile.phone}}" class="form-control" name="phone">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="address">Adres</label>
+                          <textarea id="address" value="{{profile.address}}" class="form-control" name="address"></textarea>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="nav nav-pills nav-fill">
+                    {% comment %} <li class="nav-item"><a href="/order/productorder" class="nav-link active"> <i class="fa fa-map-marker"></i><br>Adres Bilgileri</a></li> {% endcomment %}
+                    {% comment %} <li class="nav-item"><a href="#" class="nav-link disabled"><i class="fa fa-truck"></i><br>Delivery Method</a></li> {% endcomment %}
+                    <li class="nav-item"><a href="" class="nav-link active"><i class="fa fa-money"></i><br>Ödeme Bilgileri</a></li>
+                    {% comment %} <li class="nav-item"><a href="#" class="nav-link disabled"><i class="fa fa-eye"></i><br>Order Review</a></li> {% endcomment %}
+                  </ul>
+                  <div class="content">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="first_name">Kart Üzerindeki İsim</label>
+                          <input id="first_name" type="text" value="isim" class="form-control" >
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="last_name">Kart Üzerindeki Soyisim</label>
+                          <input id="last_name" type="text" value="soyisim" class="form-control" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="last_name">Kart Numarası</label>
+                          <input id="last_name" type="text" value="1234 5678 9101 1213" class="form-control" >
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="last_name">CVC2</label>
+                          <input id="last_name" type="text" value="123" class="form-control" >
+                        </div>
+                      </div>
+                      
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="last_name">Son Kullanma Tarihi</label>
+                          <input id="last_name" type="text" value="01/01/2025" class="form-control" >
+                        </div>
+                      </div>
+                    
+                    
+                    
+                      </div>
+                  <div class="box-footer d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="left-col"><a href="/basket" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i>Sepete Dön</a></div>
+                    <div class="right-col">
+                      <button type="submit" value="SEND FORM" class="btn btn-template-main">Siparişi Tamamla<i class="fa fa-chevron-right"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div id="order-summary" class="box mt-0 mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h3>SİPARİŞ TUTARI</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Ürünlerin Tutarı</td>
+                        <th>{{total}} ₺</th>
+                      </tr>
+                      <tr>
+                        <td>Kargo Ücreti</td>
+                        <th>00.00 ₺</th>
+                      </tr>
+                      
+                      <tr class="total">
+                        <td>Toplam</td>
+                        <th>{{total}} ₺</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+    {% include 'footer.html' %}
+
+
+    </body>
+</html>
+      
+      
+      

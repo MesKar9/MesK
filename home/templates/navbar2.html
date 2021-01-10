@@ -1,0 +1,148 @@
+{% load static %}
+
+<div id="all">
+      <!-- Top bar-->
+      <div class="top-bar">
+        <div class="container">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-6 d-md-block d-none">
+              <p>2016734011</p>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex justify-content-md-end justify-content-between">
+                <ul class="list-inline contact-info d-block d-md-none">
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+                <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">GİRİŞ YAP</span></a><a href="customer-register.html" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">KAYIT OL</span></a></div>
+                <ul class="social-custom list-inline">
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Top bar end-->
+
+      
+      
+
+
+
+
+
+
+
+
+
+    
+
+      <!-- Login Modal-->
+      <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
+        <div role="document" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="login-modalLabel" class="modal-title">Üye Girişi</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+              <form action="customer-orders.html" method="get">
+                <div class="form-group">
+                  <input id="email_modal" type="text" placeholder="email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input id="password_modal" type="password" placeholder="password" class="form-control">
+                </div>
+                <p class="text-center">
+                  <button class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
+                </p>
+              </form>
+              <p class="text-center text-muted">Hala Üye Olmadınız Mı?</p>
+              <p class="text-center text-muted"><a href="customer-register.html"><strong>Şimdi Kayıt Ol</strong></a>! Kayıt Olmak Çok Kolay!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Login modal end-->
+      <!-- Navbar Start-->
+      <header class="nav-holder make-sticky">
+        <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
+          <div class="container"><a href="index.html" class="navbar-brand home"><img src="{% static 'img/logo.png' %}" alt="Universal logo" class="d-none d-md-inline-block"><img src="{% static 'img/logo-small.png' %}" alt="Universal logo" class="d-inline-block d-md-none"><span class="sr-only">Universal - go to homepage</span></a>
+            <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
+            <div id="navigation" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a href="/" class="nav-link">ANASAYFA <b class="caret"></b></a>
+                  
+                </li>
+                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="dropdown-toggle">KATEGORİLER<b class="caret"></b></a>
+                  <ul class="dropdown-menu megamenu">
+                    <li>
+                      <div class="row">
+                        <div class="col-lg-6"><img src="{% static 'img/template-easy-customize.png' %}" alt="" class="img-fluid d-none d-lg-block"></div>
+                        <div class="col-lg-3 col-md-6">
+                          {% load mptt_tags %}
+                            <ul class="list-unstyled mb-3">
+                                {% recursetree categoryData %}
+                                    <li class="nav-item">
+                                        <a href="/category/{{node.slug}}/" class="nav-link">{{ node.title }}</a>
+                                        
+                                            {% if not node.is_leaf_node %}
+                                                <ul class="list-links">
+                                                    <li class="nav-item"><a href="/category/{{node.slug}}" class="nav-link">{{ children }}</a></li>
+                                                
+                                                </ul>
+                                            {% endif %}
+                                            
+                                    </li>
+                                {% endrecursetree %}
+                            </ul>
+                        </div>
+                        
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" class="dropdown-toggle">HAKKIMIZDA <b class="caret"></b></a>
+                  <ul class="dropdown-menu megamenu">
+                    <li>
+                      <div class="row">
+                        <div class="col-lg-6"><img src="{% static 'img/template-homepage.png' %}" alt="" class="img-fluid d-none d-lg-block"></div>
+                        <div class="col-lg-3 col-md-6">
+                          <h5>HAKKIMIZDA</h5>
+                          <ul class="list-unstyled mb-3">
+                            <li class="nav-item"><a href="/about/" class="nav-link">HAKKIMIZDA</a></li>
+                            
+                          </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                          <h5>İLETİŞİM</h5>
+                          <ul class="list-unstyled mb-3">
+                            <li class="nav-item"><a href="/contact/" class="nav-link">İLETİŞİM</a></li>
+                            
+                          </ul>
+                          
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                
+                
+              </ul>
+            </div>
+            <div id="search" class="collapse clearfix">
+              <form role="search" class="navbar-form">
+                <div class="input-group">
+                  <input type="text" placeholder="Search" class="form-control"><span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fa fa-search"></i></button></span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Navbar End-->

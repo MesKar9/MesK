@@ -1,0 +1,24 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}{% endblock title %}
+
+{% block bod %}
+
+
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {% endblock navbar %}
+
+    {% block carousel %}
+        {% include 'carousel.html' %}
+    {% endblock carousel %}
+
+    {% block categoryFull %}
+        {% include 'category-full.html' %}
+    {% endblock categoryFull %}
+
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock footer %}
+
+{% endblock bod %}

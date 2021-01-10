@@ -1,0 +1,200 @@
+{% load static %}
+
+<! DOCTYPE html >
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Anasayfa</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Google fonts - Roboto-->
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Roboto:300,400,700' %}">
+    <!-- Bootstrap Select-->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/css/bootstrap-select.min.css' %}">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Favicon and apple touch icons-->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-touch-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/apple-touch-icon-152x152.png' %}">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9] -->
+        <script src="{% static 'https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js' %}"></script>
+        <script src="{% static 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><!--[endif]-->
+  </head>
+    <body>
+
+
+    {% include 'navbar.html' %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">SEPETİM</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="/">ANASAFA</a></li>
+                <li class="breadcrumb-item active">SEPETİM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            
+            <div id="basket" class="col-lg-9">
+              <div class="box mt-0 pb-0 no-horizontal-padding">
+                <form method="get" action="/order/productorder/">
+                  <div class="table-responsive">
+                    <table class="table">
+                    {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                      <thead>
+                        <tr>
+                          <th colspan="2">Ürün</th>
+                          <th>Adet</th>
+                          <th>Ürün Fiyatı</th>
+                          <th>İndirim</th>
+                          <th colspan="2">Toplam</th>
+                        </tr>
+                      </thead>
+                      {% for rs in basket %}
+                      <tbody>
+                        <tr>
+                          <td><a href="/products/{{rs.product.id}}/{{rs.product.slug}}"><img src="{{rs.product.image.url}}" alt="" class="img-fluid"></a></td>
+                          <td><a href="#">{{rs.title}}</a></td>
+                          <td>
+                            <input name="quantity" type="number" value="quantity" min="1" max="{{rs.product.amount}}" class="form-control">
+                          </td>
+                          <td>{{rs.product.price}}</td>
+                          <td>0.00 ₺</td>
+                          <td>{{rs.product.price}}</td>
+                          <td><a href="/order/deletefrombasket/{{rs.id}}" onclick="return confirm('Silmek istediğinize emin misiniz?')"><i class="fa fa-trash-o"></i></a></td>
+                        </tr>
+                        
+                      </tbody>
+                      {% endfor %}
+                      <tfoot>
+                        <tr>
+                          <th colspan="5">Toplam</th>
+                          <th colspan="2">{{ total }}</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <div class="box-footer d-flex justify-content-between align-items-center">
+                    <div class="left-col"><a href="/" class="btn btn-secondary mt-0"><i class="fa fa-chevron-left"></i> ALIŞVERİŞE DEVAM ET</a></div>
+                    <div class="right-col">
+
+                      <button type="submit" class="btn btn-template-outlined">Ödeme <i class="fa fa-chevron-right"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="box text-uppercase mt-0 mb-2">
+                    <h3>-</h3>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="shop-detail.html"><img src="{% if productData.id == 8 %}{{productData.image.url}}{% endif %}" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">-</a></h3>
+                      <p class="price">-</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="shop-detail.html"><img src="img/product3.jpg" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">-</a></h3>
+                      <p class="price">-</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                  <div class="product">
+                    <div class="image"><a href="shop-detail.html"><img src="img/product1.jpg" alt="" class="img-fluid image1"></a></div>
+                    <div class="text">
+                      <h3 class="h5"><a href="shop-detail.html">-</a></h3>
+                      <p class="price">-</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div id="order-summary" class="box mt-0 mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h3>SİPARİŞ TUTARI</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>Ürünlerin Tutarı</td>
+                        <th>{{total}} ₺</th>
+                      </tr>
+                      <tr>
+                        <td>Kargo Ücreti</td>
+                        <th>00.00 ₺</th>
+                      </tr>
+                      
+                      <tr class="total">
+                        <td>Toplam</td>
+                        <th>{{total}} ₺</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="box box mt-0 mb-4 p-0">
+                <div class="box-header mt-0">
+                  <h4>Kupon Kodu</h4>
+                </div>
+                
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control"><span class="input-group-btn">
+                      <button type="button" class="btn btn-template-main"><i class="fa fa-gift"></i></button></span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% include 'footer.html' %}
+
+
+    </body>
+</html>
+      
+

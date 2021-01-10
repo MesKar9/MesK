@@ -1,0 +1,20 @@
+{% extends 'head.html' %}
+
+
+{% block title %}{{setting.title}}{% endblock title %}
+{% block keywords %}{{setting.keywords}}{% endblock keywords %}
+{% block description %}{{setting.description}}{% endblock description %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock navbar %}
+
+
+
+{% block reklam %}
+    {% include 'reklam.html' %}
+{% endblock reklam %}
+
+{% block mainLayout %}
+    {% include 'main-layout.html' %}
+{% endblock mainLayout %}

@@ -1,0 +1,91 @@
+{% load static %}
+      
+      <div id="heading-breadcrumbs">
+        <div class="container">
+          <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+              <h1 class="h2">{{productData.title}}</h1>
+            </div>
+            <div class="col-md-5">
+              <ul class="breadcrumb d-flex justify-content-end">
+                <li class="breadcrumb-item"><a href="">Anasayfa</a></li>
+                <li class="breadcrumb-item"><a href="/products/">Tüm Ürünler</a></li>
+                <li class="breadcrumb-item"><a href="">{{productData.category}}</a></li>
+                <li class="breadcrumb-item active">{{productData.title}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+        <div class="container">
+          <div class="row bar">
+            <!-- LEFT COLUMN _________________________________________________________-->
+            <div class="col-lg-9">
+              <p class="lead">Başlık Açıklama</p>
+              {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+              <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Ürün açıklamasına gitmek için tıklayın.</a></p>
+              <div id="productMain" class="row">
+                <div class="col-sm-6">
+                  <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+                    <div> <img src="{{productData.image.url}}" alt="" class="img-fluid"></div>
+                    <div> <img src="{% if productData.image2 %} {{productData.image2.url}} {% endif %}" alt="" class="img-fluid"></div>
+                    <div> <img src="{% if productData.image3 %} {{productData.image3.url}} {% endif %}" alt="" class="img-fluid"></div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="box">
+                  
+                    <form action="/order/addtocart/{{productData.id}}" method="post">
+                    {% csrf_token %}
+                      <div class="sizes">
+                        <h3>Bedenler</h3>
+                        <select class="bs-select">
+                          <option value="small">Small</option>
+                          <option value="medium">Medium</option>
+                          <option value="large">Large</option>
+                          <option value="x-large">X Large</option>
+                        </select>
+                      </div>
+                      <p class="price">{{productData.price}} ₺</p>
+                      <p class="text-center">
+                        <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>
+                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button>
+                      </p>
+                    </form>
+                  </div>
+                  <div data-slider-id="1" class="owl-thumbs">
+                    <button class="owl-thumb-item"><img src="{% if productData.image %} {{productData.image.url}} {% endif %}" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="{% if productData.image2 %} {{productData.image2.url}} {% endif %}" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="{% if productData.image3 %} {{productData.image3.url}} {% endif %}" alt="" class="img-fluid"></button>
+                  </div>
+                </div>
+              </div>
+              <div id="details" class="box mb-4 mt-4">
+                <p></p>
+                <h4>Ürün Açıklaması</h4>
+                <p>{{productData.detail | safe}}</p>
+                {% comment %} <h4>Material & care</h4>
+                <ul>
+                  <li>Polyester</li>
+                  <li>Machine wash</li>
+                </ul>
+                <h4>Size & Fit</h4>
+                <ul>
+                  <li>Regular fit</li>
+                  <li>The model (height 5'8 "and chest 33") is wearing a size S</li>
+                </ul> {% endcomment %}
+                <blockquote class="blockquote">
+                  <p class="mb-0"><em></em></p>
+                </blockquote>
+              </div>
+            </div>
+        </div>
+      </div>
+            

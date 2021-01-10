@@ -1,0 +1,16 @@
+{% load mptt_tags %}
+                            <ul class="list-unstyled mb-3">
+                                {% recursetree categoryData %}
+                                    <li class="nav-item">
+                                        <a href="/category/{{node.slug}}/" class="nav-link">{{ node.title }}</a>
+                                        
+                                            {% if not node.is_leaf_node %}
+                                                <ul class="list-links">
+                                                    <li class="nav-item"><a href="/category/{{node.slug}}" class="nav-link">{{ children }}</a></li>
+                                                
+                                                </ul>
+                                            {% endif %}
+                                            
+                                    </li>
+                                {% endrecursetree %}
+                            </ul>
