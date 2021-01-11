@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'widget_tweaks',
     'mptt',
+    'storages',
 
 
 
@@ -128,9 +129,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -146,13 +145,22 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+AWS_STORAGE_BUCKET_NAME = 'ticaret-sitem-static'
+AWS_S3_FILE_OVERRITE = False
+AWS_DEFAULT_ACL = None
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
 DEFAULT_FROM_EMAIL = 'mesut.krbyr@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-AWS_ACCESS_KEY_ID = os.environ.get('AKIAJN27EGAVBGVRI4YQ')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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)
+AWS_ACCESS_KEY_ID = os.environ.get('AKIA5ZAITXJIEG7YCAVX')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
