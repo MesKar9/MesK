@@ -95,6 +95,8 @@ class Product(models.Model):
         ('False', 'Stokta Yok')
     )
 
+    
+
     category = models.ForeignKey(
         Category,
         on_delete=models.
@@ -102,7 +104,7 @@ class Product(models.Model):
     )
 
     title = models.CharField(
-        'Başlık',
+        'Ürün İsmi',
         blank=True,
         max_length=40
     )
@@ -164,6 +166,8 @@ class Product(models.Model):
         max_length=10,
         choices=STATUS
     )
+
+    
 
     parent = models.ForeignKey(
         'self',

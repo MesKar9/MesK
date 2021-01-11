@@ -52,9 +52,9 @@
             </div>
             <div class="col-md-5">
               <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="">Anasayfa</a></li>
-                <li class="breadcrumb-item"><a href="/products/">Tüm Ürünler</a></li>
-                <li class="breadcrumb-item"><a href="">{{productData.category}}</a></li>
+                <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+                <li class="breadcrumb-item"><a href="/allproducts/">Tüm Ürünler</a></li>
+                <li class="breadcrumb-item"><a href="/">{{productData.category}}</a></li>
                 <li class="breadcrumb-item active">{{productData.title}}</li>
               </ul>
             </div>
@@ -66,7 +66,7 @@
           <div class="row bar">
             <!-- LEFT COLUMN _________________________________________________________-->
             <div class="col-lg-9">
-              <p class="lead">Başlık Açıklama</p>
+              <p class="lead">{{productData.description}}</p>
               {% if messages %}
                             {% for message in messages %}
                                 <div class="alert alert-{{message.tags}}" role="alert">
@@ -74,7 +74,7 @@
                                 </div>
                             {% endfor %}
                         {% endif %}
-              <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Ürün açıklamasına gitmek için tıklayın.</a></p>
+              <p class="goToDescription"><a href="#details" class="scroll-to text-uppercase">Ürün detayına gitmek için tıklayın.</a></p>
               <div id="productMain" class="row">
                 <div class="col-sm-6">
                   <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
@@ -90,22 +90,24 @@
                     {% csrf_token %}
                       {% comment %} <div class="sizes">
                         <h3>Bedenler</h3>
-                        <select class="bs-select">
-                          <option value="small">Small</option>
-                          <option value="medium">Medium</option>
-                          <option value="large">Large</option>
-                          <option value="x-large">X Large</option>
+                        <select class="bs-select form-control">
+                          <option value="small" name="xs">XS-Çok Küçük</option>
+                          <option value="small" name="s">S-Küçük</option>
+                          <option value="medium" name="m">M-Orta</option>
+                          <option value="large" name="l">L-Büyük</option>
+                          <option value="x-large" name="xl">XL-Çok Büyük</option>
                         </select>
-                      </div> {% endcomment %}
+                      </div>  {% endcomment %}
+                      <p class="price">FİYAT </p>
                       <p class="price">{{productData.price}} ₺</p>
-                      <div class="box">
-            <label for="tentacles">Number of tentacles (10-100):</label>
+                      
+            
 
-    <input type="number" id="tentacles" name="quantity" min="1" max="100" value="1">
-      </div>
+                      <input type="number" id="tentacles" name="quantity" min="1" max="100" value="1">
+      
                       <p class="text-center">
                         <button type="submit" value="SEND FORM" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>
-                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button>
+                        {% comment %} <button type="submit" data-toggle="tooltip" data-placement="top" title="Add to wishlist" class="btn btn-default"><i class="fa fa-heart-o"></i></button> {% endcomment %}
                       </p>
                     </form>
                   </div>

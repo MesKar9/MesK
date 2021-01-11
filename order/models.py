@@ -76,12 +76,14 @@ class OrderProduct(models.Model):
         ('Cancelled', 'İptal Edildi'),
     )
 
+    
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.FloatField()
     amount = models.FloatField()
+    
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
