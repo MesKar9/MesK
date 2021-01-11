@@ -162,7 +162,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AWS_ACCESS_KEY_ID = os.environ.get('AKIA5ZAITXJIEG7YCAVX')
 AWS_SECRET_ACCESS_KEY = os.environ.get('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')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 # STATIC_URL = '/static/'
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
