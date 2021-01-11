@@ -146,12 +146,7 @@ USE_TZ = True
 
 
 
-AWS_STORAGE_BUCKET_NAME = 'ticaret-sitem-static'
-AWS_S3_FILE_OVERRITE = False
-AWS_DEFAULT_ACL = None
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 
 
 DEFAULT_FROM_EMAIL = 'mesut.krbyr@gmail.com'
@@ -159,17 +154,24 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-AWS_ACCESS_KEY_ID = os.environ.get('AKIA5ZAITXJIEG7YCAVX')
-AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_ACCESS_KEY_ID = 'AKIA5ZAITXJIEG7YCAVX'
+AWS_SECRET_ACCESS_KEY = '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'
 
-# STATIC_ROOT = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+AWS_STORAGE_BUCKET_NAME = 'ticaret-sitem-static'
+AWS_S3_FILE_OVERRITE = False
+AWS_DEFAULT_ACL = None
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATIC_ROOT = 'static'
 # STATIC_URL = '/static/'
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-# MEDIA_URL = '/uploads/'
-MEDIA_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+DEFAULT_FILE_STORAGE = 'core.custom_storages.MediaStorage'
+MEDIA_URL = '/uploads/'
+# MEDIA_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
 django_heroku.settings(locals())
