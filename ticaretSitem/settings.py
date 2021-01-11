@@ -157,7 +157,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-MEDIA_URL = '/uploads/'
+# MEDIA_URL = '/uploads/'
+ MEDIA_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
