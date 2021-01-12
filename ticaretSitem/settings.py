@@ -166,7 +166,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATIC_ROOT = 'static'
 # STATIC_URL = '/static/'
 STATIC_URL = 'http://ticaret-sitem-static.s3.amazonaws.com/'
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+ADMIN_MEDIA_PREFIX = 'http://ticaret-sitem-static.s3.amazonaws.com/admin/'
 
 DEFAULT_FILE_STORAGE = 'core.custom_storages.MediaStorage'
 MEDIA_URL = '/uploads/'
